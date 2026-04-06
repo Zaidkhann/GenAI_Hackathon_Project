@@ -15,7 +15,11 @@ app.use(express.json());
 app.use(cors());
 
 // Connect DB
-connectDB();
+try {
+  connectDB();
+} catch (error) {
+  console.log("DB connection failed (continuing without DB):", error.message);
+}
 
 // Routes
 app.use("/api/ai", aiRoutes);
